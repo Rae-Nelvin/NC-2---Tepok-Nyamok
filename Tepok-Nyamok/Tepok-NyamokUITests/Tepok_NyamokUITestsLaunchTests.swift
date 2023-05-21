@@ -1,8 +1,8 @@
 //
 //  Tepok_NyamokUITestsLaunchTests.swift
-//  Tepok NyamokUITests
+//  Tepok-NyamokUITests
 //
-//  Created by Leonardo Wijaya on 19/05/23.
+//  Created by Leonardo Wijaya on 21/05/23.
 //
 
 import XCTest

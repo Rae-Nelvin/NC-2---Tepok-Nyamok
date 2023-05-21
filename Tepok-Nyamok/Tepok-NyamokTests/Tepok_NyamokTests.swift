@@ -1,8 +1,8 @@
 //
 //  Tepok_NyamokTests.swift
-//  Tepok NyamokTests
+//  Tepok-NyamokTests
 //
-//  Created by Leonardo Wijaya on 19/05/23.
+//  Created by Leonardo Wijaya on 21/05/23.
 //
 
 import XCTest
