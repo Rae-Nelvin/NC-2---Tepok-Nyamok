@@ -9,6 +9,8 @@ import UIKit
 
 class WelcomeScreen: UIViewController {
     
+    private let rsm: RoomSessionManager = RoomSessionManager()
+    private var wc = WelcomeController()
     private var titleLabel = UILabel()
     private var startButton = UIButton(type: .system)
     private var nameTextField: UITextField!
@@ -27,7 +29,7 @@ class WelcomeScreen: UIViewController {
     }
 
     private func setupViews() {
-        titleLabel = generateText(string: "Tepok Nyamok", fontSize: 48, fontWeight: .black)
+        titleLabel = UILabel().generateText(string: "Tepok Nyamok", fontSize: 48, fontWeight: .black)
         view.addSubview(titleLabel)
         
         rectangle.backgroundColor = .gray
@@ -35,11 +37,11 @@ class WelcomeScreen: UIViewController {
         rectangle.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(rectangle)
         
-        nameTextField = generateTextField(string: "Input your name...")
+        nameTextField = UITextField().generateTextField(string: "Input your name...")
         nameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         view.addSubview(nameTextField)
         
-        startButton = generateButton(string: "Start", tag: 1)
+        startButton = UIButton().generateButton(string: "Start", tag: 1)
         startButton.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
         startButton.isEnabled = false
         view.addSubview(startButton)
@@ -63,55 +65,9 @@ class WelcomeScreen: UIViewController {
         ])
     }
     
-    private func generateText(string: String, fontSize: CGFloat, fontWeight: UIFont.Weight) -> UILabel {
-        let text = UILabel()
-        text.text = string
-        text.font = .systemFont(ofSize: fontSize, weight: fontWeight)
-        text.translatesAutoresizingMaskIntoConstraints = false
-        
-        return text
-    }
-    
-    private func generateButton(string: String, tag: Int) -> UIButton {
-        let button = UIButton(type: .system)
-        button.setTitle(string, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 34, weight: .bold)
-        button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = .gray
-        button.layer.cornerRadius = 10
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.widthAnchor.constraint(equalToConstant: 368).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 74).isActive = true
-        button.tag = tag
-        
-        return button
-    }
-    
-    private func generateTextField(string: String) -> UITextField {
-        let textField = UITextField()
-        textField.backgroundColor = .gray
-        textField.attributedPlaceholder = NSAttributedString (
-            string: string,
-            attributes: [
-                NSAttributedString.Key.foregroundColor: UIColor.black,
-                NSAttributedString.Key.font: UIFont(name: "Arial", size: 20)!
-            ]
-        )
-        textField.borderStyle = .roundedRect
-        textField.autocorrectionType = .no
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 27, height: textField.frame.height))
-        textField.leftView = paddingView
-        textField.leftViewMode = .always
-        textField.widthAnchor.constraint(equalToConstant: 368).isActive = true
-        textField.heightAnchor.constraint(equalToConstant: 58).isActive = true
-        
-        return textField
-    }
-    
     private func showHostAndJoinButtons() {
-        hostSessionButton = generateButton(string: "Host a Session", tag: 1)
-        joinSessionButton = generateButton(string: "Join a Session", tag: 2)
+        hostSessionButton = UIButton().generateButton(string: "Host a Session", tag: 1)
+        joinSessionButton = UIButton().generateButton(string: "Join a Session", tag: 2)
         
         hostSessionButton.alpha = 0
         joinSessionButton.alpha = 0
@@ -137,8 +93,8 @@ class WelcomeScreen: UIViewController {
     }
     
     private func showJoinTextFieldAndButton() {
-        let sessionTextField = generateTextField(string: "Input session code")
-        joinButton = generateButton(string: "Join", tag: 1)
+        let sessionTextField = UITextField().generateTextField(string: "Input session code")
+        joinButton = UIButton().generateButton(string: "Join", tag: 1)
         
         sessionTextField.alpha = 0
         joinButton.alpha = 0
@@ -188,6 +144,7 @@ class WelcomeScreen: UIViewController {
     @objc private func startButtonTapped() {
         guard let name = playerName else { return }
         print("Player's Name: \(name)")
+        wc.createPlayer(name: name)
         
         UIView.animate(withDuration: 0.3, animations: {
             self.nameTextField.alpha = 0
@@ -200,19 +157,22 @@ class WelcomeScreen: UIViewController {
     }
     
     @objc private func hostOrJoinSessionButtonTapped(_ sender: UIButton) {
+        // Host Button
         if sender.tag == 1 {
             let playersScreen = PlayersScreen()
             playersScreen.modalPresentationStyle = .fullScreen
             self.present(playersScreen, animated: true, completion: nil)
-        } else if sender.tag == 2 {
+            rsm.startAdvertising()
+        } // Join Button
+        else if sender.tag == 2 {
             UIView.animate(withDuration: 0.3, animations: {
                 self.hostSessionButton.alpha = 0
                 self.joinSessionButton.alpha = 0
             }) { _ in
                 self.hostSessionButton.removeFromSuperview()
                 self.joinSessionButton.removeFromSuperview()
-                self.showJoinTextFieldAndButton()
             }
+            rsm.showBrowserViewController(from: self)
         }
     }
     

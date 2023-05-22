@@ -9,13 +9,12 @@ import UIKit
 
 class PlayersScreen: UIViewController {
     
+    private var rsm: RoomSessionManager = RoomSessionManager()
     private var titleLabel = UILabel()
-    private var players: Int = 1
-    private var roomCode: String = "ABC23"
-    private var roomCodeTitleLabel = UILabel()
-    private var roomCodeLabel = UILabel()
+    private var players: [String] = ["Player 1", "Player2", "Player 3", "Player 4", "Player 5"]
     private var playerColumn = UILabel()
     private var startButton = UIButton(type: .system)
+    private let stackView = UIStackView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,19 +24,19 @@ class PlayersScreen: UIViewController {
     }
     
     private func setupViews() {
-        titleLabel = generateText(string: "Players 1/5", fontSize: 28, fontWeight: .regular)
+        titleLabel = UILabel().generateText(string: "Players 1/5", fontSize: 28, fontWeight: .regular)
         view.addSubview(titleLabel)
         
-        roomCodeTitleLabel = generateText(string: "Room Code :", fontSize: 20, fontWeight: .regular)
-        view.addSubview(roomCodeTitleLabel)
+        stackView.axis = .vertical
+        stackView.spacing = 10
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(stackView)
         
-        roomCodeLabel = generateText(string: roomCode, fontSize: 22, fontWeight: .bold)
-        view.addSubview(roomCodeLabel)
+        addPlayerNames()
         
-        playerColumn = generateColumn(string: "Player 1")
-        view.addSubview(playerColumn)
-        
-        startButton = generateButton(string: "Start", tag: 1)
+        startButton = UIButton().generateButton(string: "Start", tag: 1)
         view.addSubview(startButton)
     }
     
@@ -46,52 +45,43 @@ class PlayersScreen: UIViewController {
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 28),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 31),
             
-            roomCodeTitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 17),
-            roomCodeTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -36),
-            
-            roomCodeLabel.topAnchor.constraint(equalTo: roomCodeTitleLabel.bottomAnchor, constant: 3),
-            roomCodeLabel.trailingAnchor.constraint(equalTo: roomCodeTitleLabel.trailingAnchor),
+            stackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 23),
+            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             startButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -110),
             startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
     }
     
-    private func generateText(string: String, fontSize: CGFloat, fontWeight: UIFont.Weight) -> UILabel {
-        let text = UILabel()
-        text.text = string
-        text.font = .systemFont(ofSize: fontSize, weight: fontWeight)
-        text.translatesAutoresizingMaskIntoConstraints = false
-        
-        return text
+    private func addPlayerNames() {
+        for playerName in players {
+            let playerNameView = generateColumn(string: playerName)
+            stackView.addArrangedSubview(playerNameView)
+        }
     }
     
-    private func generateButton(string: String, tag: Int) -> UIButton {
-        let button = UIButton(type: .system)
-        button.setTitle(string, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 34, weight: .bold)
-        button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = .gray
-        button.layer.cornerRadius = 10
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.widthAnchor.constraint(equalToConstant: 368).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 74).isActive = true
-        button.tag = tag
-        
-        return button
-    }
-    
-    private func generateColumn(string: String) -> UILabel {
-        let column = UILabel()
-        column.text = string
-        column.font = .systemFont(ofSize: 24)
-        column.textColor = .black
+    private func generateColumn(string: String) -> UIView {
+        let column = UIView()
         column.backgroundColor = .gray
+        column.layer.cornerRadius = 10
         column.translatesAutoresizingMaskIntoConstraints = false
-        column.textAlignment = .left
+        view.addSubview(column)
         
-        column.widthAnchor.constraint(equalToConstant: 368).isActive = true
-        column.heightAnchor.constraint(equalToConstant: 63).isActive = true
+        let label = UILabel()
+        label.text = string
+        label.font = .systemFont(ofSize: 24)
+        label.textColor = .black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .left
+        column.addSubview(label)
+        
+        NSLayoutConstraint.activate([
+            column.widthAnchor.constraint(equalToConstant: 368),
+            column.heightAnchor.constraint(equalToConstant: 63),
+            
+            label.centerYAnchor.constraint(equalTo: column.centerYAnchor),
+            label.leadingAnchor.constraint(equalTo: column.leadingAnchor, constant: 29)
+        ])
         
         return column
     }
