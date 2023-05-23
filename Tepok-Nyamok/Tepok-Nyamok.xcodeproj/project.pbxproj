@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		158515CA2A1BB01400889001 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158515C92A1BB01400889001 /* GameScene.swift */; };
+		158515CA2A1BB01400889001 /* GameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158515C92A1BB01400889001 /* GameScreen.swift */; };
 		158515CE2A1BB03C00889001 /* GameRulesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158515CD2A1BB03C00889001 /* GameRulesScreen.swift */; };
-		1585160F2A1BB37600889001 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1585160E2A1BB37600889001 /* GameViewController.swift */; };
-		158516112A1BBE3500889001 /* GameScene.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 158516102A1BBE3500889001 /* GameScene.storyboard */; };
 		158516132A1BC87300889001 /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158516122A1BC87300889001 /* GameController.swift */; };
 		158516162A1BC8B000889001 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158516152A1BC8B000889001 /* Card.swift */; };
+		158516212A1CB32100889001 /* GameKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158516202A1CB32100889001 /* GameKitManager.swift */; };
+		158516262A1CC5CB00889001 /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158516252A1CC5CB00889001 /* LoadingScreen.swift */; };
 		159FEA852A1A5380006C9EE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159FEA842A1A5380006C9EE8 /* AppDelegate.swift */; };
 		159FEA872A1A5380006C9EE8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159FEA862A1A5380006C9EE8 /* SceneDelegate.swift */; };
 		159FEA892A1A5380006C9EE8 /* WelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159FEA882A1A5380006C9EE8 /* WelcomeScreen.swift */; };
@@ -52,12 +52,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		158515C92A1BB01400889001 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		158515C92A1BB01400889001 /* GameScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreen.swift; sourceTree = "<group>"; };
 		158515CD2A1BB03C00889001 /* GameRulesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRulesScreen.swift; sourceTree = "<group>"; };
-		1585160E2A1BB37600889001 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		158516102A1BBE3500889001 /* GameScene.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = GameScene.storyboard; path = ../../../../../../.Trash/GameScene.storyboard; sourceTree = "<group>"; };
 		158516122A1BC87300889001 /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
 		158516152A1BC8B000889001 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		1585161F2A1CAFE000889001 /* Tepok-Nyamok.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Tepok-Nyamok.entitlements"; sourceTree = "<group>"; };
+		158516202A1CB32100889001 /* GameKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameKitManager.swift; sourceTree = "<group>"; };
+		158516252A1CC5CB00889001 /* LoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
 		159FEA812A1A5380006C9EE8 /* Tepok-Nyamok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tepok-Nyamok.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		159FEA842A1A5380006C9EE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		159FEA862A1A5380006C9EE8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,9 +115,7 @@
 		158515C82A1BAFFD00889001 /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				158515C92A1BB01400889001 /* GameScene.swift */,
-				158516102A1BBE3500889001 /* GameScene.storyboard */,
-				1585160E2A1BB37600889001 /* GameViewController.swift */,
+				158515C92A1BB01400889001 /* GameScreen.swift */,
 				158516122A1BC87300889001 /* GameController.swift */,
 			);
 			path = Game;
@@ -155,12 +154,14 @@
 		159FEA832A1A5380006C9EE8 /* Tepok-Nyamok */ = {
 			isa = PBXGroup;
 			children = (
+				1585161F2A1CAFE000889001 /* Tepok-Nyamok.entitlements */,
 				158516142A1BC8A600889001 /* Models */,
 				158515C82A1BAFFD00889001 /* Game */,
 				159FEAC32A1B59E9006C9EE8 /* Helpers */,
 				159FEABC2A1A64D6006C9EE8 /* Welcome */,
 				159FEA842A1A5380006C9EE8 /* AppDelegate.swift */,
 				159FEA862A1A5380006C9EE8 /* SceneDelegate.swift */,
+				158516202A1CB32100889001 /* GameKitManager.swift */,
 				159FEA902A1A5381006C9EE8 /* Assets.xcassets */,
 				159FEA922A1A5381006C9EE8 /* LaunchScreen.storyboard */,
 				159FEA952A1A5381006C9EE8 /* Info.plist */,
@@ -204,6 +205,7 @@
 				159FEACA2A1B5BDA006C9EE8 /* WelcomeController.swift */,
 				159FEACE2A1B674D006C9EE8 /* RoomSessionManager.swift */,
 				158515CD2A1BB03C00889001 /* GameRulesScreen.swift */,
+				158516252A1CC5CB00889001 /* LoadingScreen.swift */,
 			);
 			path = Welcome;
 			sourceTree = "<group>";
@@ -322,7 +324,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				158516112A1BBE3500889001 /* GameScene.storyboard in Resources */,
 				159FEA942A1A5381006C9EE8 /* LaunchScreen.storyboard in Resources */,
 				159FEA912A1A5381006C9EE8 /* Assets.xcassets in Resources */,
 			);
@@ -349,19 +350,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1585160F2A1BB37600889001 /* GameViewController.swift in Sources */,
 				158516132A1BC87300889001 /* GameController.swift in Sources */,
 				159FEAD12A1B699E006C9EE8 /* Player.swift in Sources */,
 				159FEA892A1A5380006C9EE8 /* WelcomeScreen.swift in Sources */,
 				159FEA852A1A5380006C9EE8 /* AppDelegate.swift in Sources */,
 				159FEAC02A1A7149006C9EE8 /* PlayersScreen.swift in Sources */,
+				158516262A1CC5CB00889001 /* LoadingScreen.swift in Sources */,
 				159FEAC72A1B5AF8006C9EE8 /* TextFieldExtension.swift in Sources */,
 				159FEAC92A1B5B7E006C9EE8 /* LabelExtension.swift in Sources */,
-				158515CA2A1BB01400889001 /* GameScene.swift in Sources */,
+				158515CA2A1BB01400889001 /* GameScreen.swift in Sources */,
 				159FEACF2A1B674D006C9EE8 /* RoomSessionManager.swift in Sources */,
 				159FEAC52A1B59F3006C9EE8 /* ButtonExtension.swift in Sources */,
 				159FEACB2A1B5BDA006C9EE8 /* WelcomeController.swift in Sources */,
 				158515CE2A1BB03C00889001 /* GameRulesScreen.swift in Sources */,
+				158516212A1CB32100889001 /* GameKitManager.swift in Sources */,
 				159FEA8F2A1A5380006C9EE8 /* Tepok_Nyamok.xcdatamodeld in Sources */,
 				159FEA872A1A5380006C9EE8 /* SceneDelegate.swift in Sources */,
 				158516162A1BC8B000889001 /* Card.swift in Sources */,
@@ -531,6 +533,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Tepok-Nyamok/Tepok-Nyamok.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = R4FBGZQ29P;
@@ -558,6 +561,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Tepok-Nyamok/Tepok-Nyamok.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = R4FBGZQ29P;

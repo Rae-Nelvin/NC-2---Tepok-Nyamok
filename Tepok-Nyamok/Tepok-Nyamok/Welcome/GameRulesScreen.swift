@@ -53,10 +53,9 @@ class GamesRulesScreen: UIViewController {
     
     @objc private func continueButtonTapped() {
         print("Continue Button Tapped")
-        let gameViewController = GameViewController()
-        let navigationController = UINavigationController(rootViewController: gameViewController)
-        navigationController.modalPresentationStyle = .fullScreen
-        present(navigationController, animated: true, completion: nil)
+        let gameScreen = GameScreen()
+        gameScreen.modalPresentationStyle = .fullScreen
+        self.present(gameScreen, animated: true)
     }
     
 }

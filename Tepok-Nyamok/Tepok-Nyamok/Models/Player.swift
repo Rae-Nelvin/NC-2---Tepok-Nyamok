@@ -11,27 +11,21 @@ class Player: Identifiable {
     var id = UUID()
     let name: String
     var cards: [Card]
+    var isWin: Bool
+    var isTurn: Bool
     
     init(name: String) {
         self.id = UUID()
         self.name = name
         self.cards = []
+        self.isWin = false
+        self.isTurn = false
+        assignCards()
     }
     
     func assignCards() {
-        var cards: [Card] = []
-        var assignedSet = Set<Card>()
-        
-        while cards.count < 20 {
-            let shuffledCards = cardLists.lists.shuffled()
-            let data = shuffledCards.prefix(1)[0]
-            
-            if !assignedSet.contains(data) {
-                cards.append(data)
-                assignedSet.insert(data)
-            }
-        }
-        self.cards = cards
+        cards = cardLists.lists.shuffled()
+        self.cards = Array(cards.prefix(upTo: 20))
     }
     
     func revealCard() -> Card? {

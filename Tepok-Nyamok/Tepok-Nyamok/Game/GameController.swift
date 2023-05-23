@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SpriteKit
 import GameKit
 
 class GameController {
@@ -16,7 +15,26 @@ class GameController {
     var player: Player = Player(name: "Leonardo")
     
     init() {
-        self.player.assignCards()
+        
+    }
+    
+    func removeCards() {
+        if cards.count < 1 {
+            cards = cardLists.lists
+        } else {
+            cards.remove(at: 0)
+        }
+    }
+    
+    func checkWin(player: Player) {
+        
+        if player.cards.count < 1 {
+            self.player.isWin = true
+        }
+    }
+    
+    func checkCard(card: Card) -> Bool {
+        return cards.first!.name == card.name
     }
     
 }
