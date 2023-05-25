@@ -14,14 +14,14 @@ class GameScreen: UIViewController {
     var exitButton: UIButton!
     var revealButton: UIButton!
     var cardLabel: UIView!
-    var table: UIView!
+    var table: UIImageView!
     var cardsLeftLabel: UILabel!
     var cardsLabel: UILabel!
     var cardImage: UIImageView!
     var doubleTap: UITapGestureRecognizer!
-    var player1Hand: UIView!
-    var player2Hand: UIView!
-    var player3Hand: UIView!
+    var player1Hand: UIImageView!
+    var player2Hand: UIImageView!
+    var player3Hand: UIImageView!
     
     //MARK: BackEnd Components
     var cards: [Card] = cardLists.lists
@@ -41,14 +41,13 @@ class GameScreen: UIViewController {
     // MARK: UI Logics
     private func setupViews() {
         exitButton = UIButton().generateExitButton()
+        exitButton.addTarget(self, action: #selector(exitGame), for: .touchUpInside)
         view.addSubview(exitButton)
 
         cardLabel = generateColumn(string: cards.first?.name ?? "")
         view.addSubview(cardLabel)
 
-        table = UIView()
-        table.layer.cornerRadius = 10
-        table.backgroundColor = .gray
+        table = UIImageView(image: UIImage(named: "Poker Table"))
         table.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(table)
 
@@ -64,7 +63,7 @@ class GameScreen: UIViewController {
         view.addSubview(revealButton)
 
         doubleTap = UITapGestureRecognizer(target: self, action: #selector(doubleTapTriggered))
-        doubleTap.numberOfTapsRequired = 2
+        doubleTap.numberOfTapsRequired = 3
         view.addGestureRecognizer(doubleTap)
     }
 
@@ -94,7 +93,7 @@ class GameScreen: UIViewController {
 
     private func generateColumn(string: String) -> UIView {
         let column = UIView()
-        column.backgroundColor = .gray
+        column.backgroundColor = UIColor(named: "Orange")
         column.layer.cornerRadius = 10
         column.translatesAutoresizingMaskIntoConstraints = false
         column.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 255)
@@ -132,6 +131,7 @@ class GameScreen: UIViewController {
         let label = UILabel()
         label.text = "You Win"
         label.textColor = UIColor.white
+        label.font = .systemFont(ofSize: 32, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         blackView.addSubview(label)
         label.centerXAnchor.constraint(equalTo: blackView.centerXAnchor).isActive = true
@@ -141,7 +141,7 @@ class GameScreen: UIViewController {
             blackView.alpha = 1
         }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
             UIView.animate(withDuration: 0.5) {
                 blackView.alpha = 0
             } completion: { _ in
@@ -151,57 +151,63 @@ class GameScreen: UIViewController {
     }
     
     private func player1HandReveal() {
-        player1Hand = UIView()
-        player1Hand.backgroundColor = .red
+        player1Hand = UIImageView(image: UIImage(named: "Spongebob"))
         view.addSubview(player1Hand)
         
-        player1Hand.frame = CGRect(x: view.center.x, y: view.frame.maxY + 64, width: 64, height: 200)
+        player1Hand.frame = CGRect(x: view.center.x, y: view.frame.maxY + 500, width: 364, height: 500)
         
         UIView.animate(withDuration: 1) { [self] in
-            player1Hand.frame = CGRect(x: 160, y: 406, width: 64, height: 200)
+            player1Hand.frame = CGRect(x: 0, y: 406, width: 364, height: 500)
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
             UIView.animate(withDuration: 1) { [self] in
-                player1Hand.frame = CGRect(x: view.center.x, y: view.frame.maxY + 64, width: 64, height: 200)
+                player1Hand.frame = CGRect(x: view.center.x, y: view.frame.maxY + 500, width: 364, height: 600)
+            }
+            DispatchQueue.main.async {
+                self.player1Hand.removeFromSuperview()
             }
         }
         self.checkLastHand()
     }
     
     private func player2HandReveal() {
-        player2Hand = UIView(frame: CGRect(x: view.frame.maxX, y: view.frame.maxY + 64, width: 64, height: 200))
-        player2Hand.backgroundColor = .red
-        player2Hand.translatesAutoresizingMaskIntoConstraints = false
+        player2Hand = UIImageView(image: UIImage(named: "Patrick"))
         view.addSubview(player2Hand)
+        player2Hand.frame = CGRect(x: view.frame.maxX, y: view.frame.maxY + 364, width: 364, height: 500)
         
         UIView.animate(withDuration: 1) { [self] in
-            player2Hand.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 4)
-            player2Hand.frame = CGRect(x: 300, y: 406, width: 64, height: 200)
+            player2Hand.frame = CGRect(x: 150, y: 376, width: 364, height: 500)
+            player2Hand.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 4)
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
             UIView.animate(withDuration: 1) { [self] in
-                player2Hand.frame = CGRect(x: view.frame.maxX, y: view.frame.maxY + 64, width: 64, height: 200)
+                player2Hand.frame = CGRect(x: view.frame.maxX, y: view.frame.maxY + 364, width: 364, height: 500)
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
+                self.player2Hand.removeFromSuperview()
             }
         }
         self.checkLastHand()
     }
     
     private func player3HandReveal() {
-        player3Hand = UIView(frame: CGRect(x: view.frame.minX, y: view.frame.maxY + 64, width: 64, height: 200))
-        player3Hand.backgroundColor = .red
-        player3Hand.translatesAutoresizingMaskIntoConstraints = false
+        player3Hand = UIImageView(image: UIImage(named: "Behemoth"))
         view.addSubview(player3Hand)
+        player3Hand.frame = CGRect(x: view.frame.minX, y: view.frame.maxY + 500, width: 264, height: 700)
         
         UIView.animate(withDuration: 1) { [self] in
-            player3Hand.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 4)
-            player3Hand.frame = CGRect(x: 100, y: 406, width: 64, height: 200)
+            player3Hand.frame = CGRect(x: -50, y: 206, width: 264, height: 700)
+            player3Hand.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 4)
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
             UIView.animate(withDuration: 1) { [self] in
-                player3Hand.frame = CGRect(x: view.frame.minX, y: view.frame.maxY + 64, width: 64, height: 200)
+                player3Hand.frame = CGRect(x: view.frame.minX, y: view.frame.maxY + 264, width: 364, height: 500)
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
+                self.player3Hand.removeFromSuperview()
             }
         }
         self.checkLastHand()
@@ -226,8 +232,10 @@ class GameScreen: UIViewController {
                 self.cardImage.frame = CGRect(x: 130, y: 286, width: 131, height: 174)
             }
             sendRevealedCardData(card!)
-//            checkWin(player: self.gameKitManager.player!)
             checkDeckCard()
+            if !isMatch {
+                checkWin()
+            }
         } else if !gameKitManager.playingGame {
             showWinScreen()
         }
@@ -238,8 +246,7 @@ class GameScreen: UIViewController {
     }
     
     @objc func doubleTapTriggered() {
-        print("Double Tap Triggered")
-        print("Correct")
+        print(isMatch)
         if !hands.contains(gameKitManager.player!) && isMatch {
             hands.append(gameKitManager.player!)
             revealPlayerHands(receivedHand: gameKitManager.player!)
@@ -248,14 +255,14 @@ class GameScreen: UIViewController {
     }
     
     private func revealPlayerHands(receivedHand: Player) {
-        var count = 0
+        var count = 1
         for hand in hands {
             if receivedHand == hand {
                 break
             }
             count += 1
         }
-        revealHand(player: count + 1)
+        revealHand(player: count)
     }
     
     private func revealHand(player: Int) -> Void {
@@ -267,14 +274,23 @@ class GameScreen: UIViewController {
         }
     }
     
+    @objc private func exitGame() {
+        let loadingScreen = LoadingScreen()
+        loadingScreen.modalPresentationStyle = .fullScreen
+        self.present(loadingScreen, animated: true, completion: nil)
+    }
+    
     // MARK: BackEnd Logics
     private func addRevealedCard(card: Card) {
         revealedCards.append(card)
+        self.hands = []
     }
     
     private func checkDeckCard() {
         if revealedCards.last?.name == cards.first?.name {
             isMatch = true
+        } else {
+            isMatch = false
         }
     }
     
@@ -286,13 +302,24 @@ class GameScreen: UIViewController {
         }
     }
     
+    private func checkWin() {
+        if gameKitManager.player?.cards.count == 0 {
+            gameKitManager.youWon = true
+            showWinScreen()
+        }
+    }
+    
     private func checkLastHand() {
-        if gameKitManager.players!.count + 1 == 2 {
-            if gameKitManager.player == hands.last && hands.count == 2 {
+        if gameKitManager.players!.count + 1 == 2 && hands.count == 2 {
+            if gameKitManager.player == hands.last {
                 for card in revealedCards {
                     gameKitManager.player?.cards.append(card)
                     revealedCards.remove(at: 0)
                 }
+                self.hands = []
+                isMatch.toggle()
+                sendIsMatchFalse(isMatch)
+                cardsLabel.text = "\((self.gameKitManager.player?.cards.count)!)"
             }
         } else if gameKitManager.players!.count + 1 == 3 {
             if gameKitManager.player == hands.last && hands.count == 3 {
@@ -300,16 +327,20 @@ class GameScreen: UIViewController {
                     gameKitManager.player?.cards.append(card)
                     revealedCards.remove(at: 0)
                 }
+                cardsLabel.text = "\((self.gameKitManager.player?.cards.count)!)"
+                self.hands = []
+                isMatch.toggle()
+                sendIsMatchFalse(isMatch)
             }
         }
-        isMatch = false
-        cardsLabel.text = "\((self.gameKitManager.player?.cards.count)!)"
+        checkWin()
     }
     
     private func updateOtherPlayersView(with card: Card) {
         DispatchQueue.main.async { [self] in
             // Update the cardImage view with the revealed card's image
             removeCards()
+            addRevealedCard(card: card)
             cardLabel.removeFromSuperview()
             cardLabel = generateColumn(string: cards.first?.name ?? "")
             view.addSubview(cardLabel)
@@ -318,7 +349,6 @@ class GameScreen: UIViewController {
             cardImage = UIImageView(image: UIImage(named: card.photo))
             view.addSubview(cardImage)
             cardImage.frame = CGRect(x: 0, y: 0, width: view.bounds.maxX, height: view.bounds.maxY)
-
             UIView.animate(withDuration: 0.5) {
                 self.cardImage.frame = CGRect(x: 130, y: 286, width: 131, height: 174)
             }
@@ -339,15 +369,25 @@ class GameScreen: UIViewController {
             gameKitManager.sendGameData(handData)
         }
     }
+    
+    private func sendIsMatchFalse(_ match: Bool) {
+        let matchFalse = encodeData(match)
+        if let matchData = matchFalse {
+            gameKitManager.sendGameData(matchData)
+        }
+    }
 
     private func handleReceivedGameData(_ data: Data, fromPlayer player: GKPlayer) {
         if let card: Card = decodeData(data) {
             updateOtherPlayersView(with: card)
+            print(hands)
         } else if let hand: Player = decodeData(data) {
             if !self.hands.contains(hand) {
                 self.hands.append(hand)
                 self.revealPlayerHands(receivedHand: hand)
             }
+        } else if let match: Bool = decodeData(data) {
+            self.isMatch = match
         }
     }
     

@@ -10,6 +10,7 @@ import GameKit
 
 class LoadingScreen: UIViewController {
     private let gameKitManager = GameKitManager.shared
+    private var appIcon: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +35,17 @@ class LoadingScreen: UIViewController {
         // Display loading indicator UI
         view.backgroundColor = UIColor(named: "Cream-Yellow")
         
+        appIcon = UIImageView(image: UIImage(named: "AppIcon"))
+        appIcon.layer.cornerRadius = 10
+        appIcon.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(appIcon)
+        
+        NSLayoutConstraint.activate([
+            appIcon.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            appIcon.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            appIcon.widthAnchor.constraint(equalToConstant: 368),
+            appIcon.heightAnchor.constraint(equalToConstant: 368),
+        ])
     }
     
     private func loadingComplete() {

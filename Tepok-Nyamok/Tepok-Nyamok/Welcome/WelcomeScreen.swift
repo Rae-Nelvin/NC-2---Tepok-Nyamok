@@ -13,8 +13,8 @@ class WelcomeScreen: UIViewController, UINavigationControllerDelegate {
     private var gameKitManager: GameKitManager!
     private var titleLabel = UILabel()
     private var startButton = UIButton(type: .system)
-    private var nameField: UILabel!
-    private var rectangle: UIView = UIView()
+    private var nameField: UIView!
+    private var appIcon: UIImageView!
     private var playerName: String?
     private var sessionCode: String?
 
@@ -31,12 +31,12 @@ class WelcomeScreen: UIViewController, UINavigationControllerDelegate {
         titleLabel = UILabel().generateText(string: "Tepok Nyamok", fontSize: 48, fontWeight: .black)
         view.addSubview(titleLabel)
         
-        rectangle.backgroundColor = .gray
-        rectangle.layer.cornerRadius = 10
-        rectangle.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(rectangle)
+        appIcon = UIImageView(image: UIImage(named: "AppIcon"))
+        appIcon.layer.cornerRadius = 10
+        appIcon.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(appIcon)
         
-        nameField = UILabel().generateText(string: gameKitManager.player?.name ?? "", fontSize: 20, fontWeight: .regular)
+        nameField = UIView().generateNameLabel(string: gameKitManager.player?.name ?? "", fontSize: 30, fontWeight: .bold)
         view.addSubview(nameField)
         
         startButton = UIButton().generateButton(string: "Start", tag: 1)
@@ -50,12 +50,12 @@ class WelcomeScreen: UIViewController, UINavigationControllerDelegate {
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 38),
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            rectangle.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 37),
-            rectangle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            rectangle.widthAnchor.constraint(equalToConstant: 368),
-            rectangle.heightAnchor.constraint(equalToConstant: 368),
+            appIcon.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 37),
+            appIcon.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            appIcon.widthAnchor.constraint(equalToConstant: 368),
+            appIcon.heightAnchor.constraint(equalToConstant: 368),
             
-            nameField.topAnchor.constraint(equalTo: rectangle.bottomAnchor, constant: 38),
+            nameField.topAnchor.constraint(equalTo: appIcon.bottomAnchor, constant: 38),
             nameField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             startButton.topAnchor.constraint(equalTo: nameField.bottomAnchor, constant: 32),

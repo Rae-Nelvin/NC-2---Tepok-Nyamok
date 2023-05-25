@@ -69,7 +69,7 @@ class GameKitManager: NSObject, UINavigationControllerDelegate {
 
         let matchRequest = GKMatchRequest()
         matchRequest.minPlayers = 2
-        matchRequest.maxPlayers = 5
+        matchRequest.maxPlayers = 3
 
         let viewController = GKMatchmakerViewController(matchRequest: matchRequest)
         viewController?.delegate = self

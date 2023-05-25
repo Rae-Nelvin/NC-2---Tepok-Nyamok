@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1508E5702A1D48190019781B /* PlayersScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1508E56F2A1D48190019781B /* PlayersScreen.swift */; };
+		1508E5762A1FBD930019781B /* NameLabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1508E5752A1FBD930019781B /* NameLabelExtension.swift */; };
 		158515CA2A1BB01400889001 /* GameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158515C92A1BB01400889001 /* GameScreen.swift */; };
 		158515CE2A1BB03C00889001 /* GameRulesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158515CD2A1BB03C00889001 /* GameRulesScreen.swift */; };
-		158516132A1BC87300889001 /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158516122A1BC87300889001 /* GameController.swift */; };
 		158516162A1BC8B000889001 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158516152A1BC8B000889001 /* Card.swift */; };
 		158516212A1CB32100889001 /* GameKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158516202A1CB32100889001 /* GameKitManager.swift */; };
 		158516262A1CC5CB00889001 /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158516252A1CC5CB00889001 /* LoadingScreen.swift */; };
@@ -51,9 +51,9 @@
 
 /* Begin PBXFileReference section */
 		1508E56F2A1D48190019781B /* PlayersScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayersScreen.swift; path = ../../../../../../.Trash/PlayersScreen.swift; sourceTree = "<group>"; };
+		1508E5752A1FBD930019781B /* NameLabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameLabelExtension.swift; sourceTree = "<group>"; };
 		158515C92A1BB01400889001 /* GameScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreen.swift; sourceTree = "<group>"; };
 		158515CD2A1BB03C00889001 /* GameRulesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRulesScreen.swift; sourceTree = "<group>"; };
-		158516122A1BC87300889001 /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
 		158516152A1BC8B000889001 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		1585161F2A1CAFE000889001 /* Tepok-Nyamok.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Tepok-Nyamok.entitlements"; sourceTree = "<group>"; };
 		158516202A1CB32100889001 /* GameKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameKitManager.swift; sourceTree = "<group>"; };
@@ -112,7 +112,6 @@
 			isa = PBXGroup;
 			children = (
 				158515C92A1BB01400889001 /* GameScreen.swift */,
-				158516122A1BC87300889001 /* GameController.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -210,6 +209,7 @@
 				159FEAC42A1B59F3006C9EE8 /* ButtonExtension.swift */,
 				159FEAC62A1B5AF8006C9EE8 /* TextFieldExtension.swift */,
 				159FEAC82A1B5B7E006C9EE8 /* LabelExtension.swift */,
+				1508E5752A1FBD930019781B /* NameLabelExtension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -344,7 +344,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				158516132A1BC87300889001 /* GameController.swift in Sources */,
+				1508E5762A1FBD930019781B /* NameLabelExtension.swift in Sources */,
 				159FEAD12A1B699E006C9EE8 /* Player.swift in Sources */,
 				159FEA892A1A5380006C9EE8 /* WelcomeScreen.swift in Sources */,
 				159FEA852A1A5380006C9EE8 /* AppDelegate.swift in Sources */,

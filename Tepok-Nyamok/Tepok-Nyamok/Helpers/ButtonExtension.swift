@@ -13,7 +13,7 @@ extension UIButton {
         self.setTitle(string, for: .normal)
         self.titleLabel?.font = .systemFont(ofSize: 34, weight: .bold)
         self.setTitleColor(.black, for: .normal)
-        self.backgroundColor = .gray
+        self.backgroundColor = UIColor(named: "Light-Yellow")
         self.layer.cornerRadius = 10
         self.translatesAutoresizingMaskIntoConstraints = false
         self.widthAnchor.constraint(equalToConstant: 368).isActive = true
@@ -29,7 +29,7 @@ extension UIButton {
         self.setTitle("Exit", for: .normal)
         self.titleLabel?.font = .systemFont(ofSize: 28)
         self.setTitleColor(.black, for: .normal)
-        self.backgroundColor = .gray
+        self.backgroundColor = UIColor(named: "Light-Yellow")
         self.layer.cornerRadius = 10
         self.translatesAutoresizingMaskIntoConstraints = false
         self.widthAnchor.constraint(equalToConstant: 83).isActive = true
