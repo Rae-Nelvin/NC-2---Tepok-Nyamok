@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1508E5702A1D48190019781B /* PlayersScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1508E56F2A1D48190019781B /* PlayersScreen.swift */; };
 		158515CA2A1BB01400889001 /* GameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158515C92A1BB01400889001 /* GameScreen.swift */; };
 		158515CE2A1BB03C00889001 /* GameRulesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158515CD2A1BB03C00889001 /* GameRulesScreen.swift */; };
 		158516132A1BC87300889001 /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158516122A1BC87300889001 /* GameController.swift */; };
@@ -24,13 +25,10 @@
 		159FEAAB2A1A5382006C9EE8 /* Tepok_NyamokUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159FEAAA2A1A5382006C9EE8 /* Tepok_NyamokUITestsLaunchTests.swift */; };
 		159FEAB92A1A53AA006C9EE8 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 159FEAB82A1A53AA006C9EE8 /* GameKit.framework */; };
 		159FEABB2A1A53B1006C9EE8 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 159FEABA2A1A53B1006C9EE8 /* SpriteKit.framework */; };
-		159FEAC02A1A7149006C9EE8 /* PlayersScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159FEABF2A1A7149006C9EE8 /* PlayersScreen.swift */; };
 		159FEAC52A1B59F3006C9EE8 /* ButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159FEAC42A1B59F3006C9EE8 /* ButtonExtension.swift */; };
 		159FEAC72A1B5AF8006C9EE8 /* TextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159FEAC62A1B5AF8006C9EE8 /* TextFieldExtension.swift */; };
 		159FEAC92A1B5B7E006C9EE8 /* LabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159FEAC82A1B5B7E006C9EE8 /* LabelExtension.swift */; };
-		159FEACB2A1B5BDA006C9EE8 /* WelcomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159FEACA2A1B5BDA006C9EE8 /* WelcomeController.swift */; };
 		159FEACD2A1B6735006C9EE8 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 159FEACC2A1B6734006C9EE8 /* MultipeerConnectivity.framework */; };
-		159FEACF2A1B674D006C9EE8 /* RoomSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159FEACE2A1B674D006C9EE8 /* RoomSessionManager.swift */; };
 		159FEAD12A1B699E006C9EE8 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159FEAD02A1B699E006C9EE8 /* Player.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1508E56F2A1D48190019781B /* PlayersScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayersScreen.swift; path = ../../../../../../.Trash/PlayersScreen.swift; sourceTree = "<group>"; };
 		158515C92A1BB01400889001 /* GameScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreen.swift; sourceTree = "<group>"; };
 		158515CD2A1BB03C00889001 /* GameRulesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRulesScreen.swift; sourceTree = "<group>"; };
 		158516122A1BC87300889001 /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
@@ -74,13 +73,10 @@
 		159FEAAA2A1A5382006C9EE8 /* Tepok_NyamokUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tepok_NyamokUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		159FEAB82A1A53AA006C9EE8 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		159FEABA2A1A53B1006C9EE8 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
-		159FEABF2A1A7149006C9EE8 /* PlayersScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersScreen.swift; sourceTree = "<group>"; };
 		159FEAC42A1B59F3006C9EE8 /* ButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExtension.swift; sourceTree = "<group>"; };
 		159FEAC62A1B5AF8006C9EE8 /* TextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExtension.swift; sourceTree = "<group>"; };
 		159FEAC82A1B5B7E006C9EE8 /* LabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelExtension.swift; sourceTree = "<group>"; };
-		159FEACA2A1B5BDA006C9EE8 /* WelcomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeController.swift; sourceTree = "<group>"; };
 		159FEACC2A1B6734006C9EE8 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
-		159FEACE2A1B674D006C9EE8 /* RoomSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomSessionManager.swift; sourceTree = "<group>"; };
 		159FEAD02A1B699E006C9EE8 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -200,10 +196,8 @@
 		159FEABC2A1A64D6006C9EE8 /* Welcome */ = {
 			isa = PBXGroup;
 			children = (
+				1508E56F2A1D48190019781B /* PlayersScreen.swift */,
 				159FEA882A1A5380006C9EE8 /* WelcomeScreen.swift */,
-				159FEABF2A1A7149006C9EE8 /* PlayersScreen.swift */,
-				159FEACA2A1B5BDA006C9EE8 /* WelcomeController.swift */,
-				159FEACE2A1B674D006C9EE8 /* RoomSessionManager.swift */,
 				158515CD2A1BB03C00889001 /* GameRulesScreen.swift */,
 				158516252A1CC5CB00889001 /* LoadingScreen.swift */,
 			);
@@ -354,18 +348,16 @@
 				159FEAD12A1B699E006C9EE8 /* Player.swift in Sources */,
 				159FEA892A1A5380006C9EE8 /* WelcomeScreen.swift in Sources */,
 				159FEA852A1A5380006C9EE8 /* AppDelegate.swift in Sources */,
-				159FEAC02A1A7149006C9EE8 /* PlayersScreen.swift in Sources */,
 				158516262A1CC5CB00889001 /* LoadingScreen.swift in Sources */,
 				159FEAC72A1B5AF8006C9EE8 /* TextFieldExtension.swift in Sources */,
 				159FEAC92A1B5B7E006C9EE8 /* LabelExtension.swift in Sources */,
 				158515CA2A1BB01400889001 /* GameScreen.swift in Sources */,
-				159FEACF2A1B674D006C9EE8 /* RoomSessionManager.swift in Sources */,
 				159FEAC52A1B59F3006C9EE8 /* ButtonExtension.swift in Sources */,
-				159FEACB2A1B5BDA006C9EE8 /* WelcomeController.swift in Sources */,
 				158515CE2A1BB03C00889001 /* GameRulesScreen.swift in Sources */,
 				158516212A1CB32100889001 /* GameKitManager.swift in Sources */,
 				159FEA8F2A1A5380006C9EE8 /* Tepok_Nyamok.xcdatamodeld in Sources */,
 				159FEA872A1A5380006C9EE8 /* SceneDelegate.swift in Sources */,
+				1508E5702A1D48190019781B /* PlayersScreen.swift in Sources */,
 				158516162A1BC8B000889001 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

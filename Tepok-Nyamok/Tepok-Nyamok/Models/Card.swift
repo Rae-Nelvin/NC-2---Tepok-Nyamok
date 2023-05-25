@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Card: Identifiable, Hashable {
+class Card: Identifiable, Hashable, Encodable, Decodable {
     
     var id = UUID()
     let name: String

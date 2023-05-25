@@ -8,7 +8,7 @@
 import UIKit
 import SpriteKit
 
-class GamesRulesScreen: UIViewController {
+class GameRulesScreen: UIViewController {
     
     private var titleLabel = UILabel()
     private var rectangle = UIView()

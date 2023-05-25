@@ -8,7 +8,7 @@
 import UIKit
 import GameKit
 
-class WelcomeScreen: UIViewController {
+class WelcomeScreen: UIViewController, UINavigationControllerDelegate {
     
     private var gameKitManager: GameKitManager!
     private var titleLabel = UILabel()
@@ -65,13 +65,6 @@ class WelcomeScreen: UIViewController {
     
     @objc private func startButtonTapped() {
         gameKitManager.createSession()
-//        UIView.animate(withDuration: 0.3, animations: {
-//            self.nameField.alpha = 0
-//            self.startButton.alpha = 0
-//        }) { _ in
-//            self.nameField.removeFromSuperview()
-//            self.startButton.removeFromSuperview()
-//        }
     }
 }
 
@@ -94,6 +87,9 @@ extension WelcomeScreen: GameKitManagerDelegate {
     
     func gameKitManagerDidJoinSession() {
         // Handle session join success
+        let gameRulesScreen = GameRulesScreen()
+        gameRulesScreen.modalPresentationStyle = .fullScreen
+        self.present(gameRulesScreen, animated: true, completion: nil)
     }
     
     func gameKitManagerDidFailToJoinSessionWithError(_ error: Error) {
