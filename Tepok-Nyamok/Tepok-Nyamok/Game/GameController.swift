@@ -48,10 +48,7 @@ class GameController {
     }
 
     func checkWin(player: Player) {
-
-        //        if player.cards.count < 1 {
-        //            self.player.isWin = true
-        //        }
+        
     }
 
     func checkCard(card: Card) -> Bool {

@@ -100,38 +100,18 @@ class GameKitManager: NSObject, UINavigationControllerDelegate {
         self.player = Player(name: name)
     }
 
-    func passTurnToNextParticipant(completion: @escaping (Error?) -> Void) {
-        
-    }
-
     // MARK: GameController
     var player: Player?
     var playingGame = false
-    var myTurn = false
     
     var youWon = false
     var youLost = false
     
     var players: [GKPlayer]?
-    var count: Int?
     
     func startMatch() {
-        count = 0
         playingGame = true
-        
         players = currentSession?.players
-        determineFirstPlayer(excluding: [GKLocalPlayer.local])
-        if determineFirstPlayer(excluding: [GKLocalPlayer.local]) == GKLocalPlayer.local {
-            myTurn = true
-            
-        }
-        
-    }
-    
-    func determineFirstPlayer(excluding excludedPlayers: [GKPlayer]) -> GKPlayer? {
-        let eligiblePlayers = players?.filter { !excludedPlayers.contains($0) }
-        let sortedPlayers = eligiblePlayers?.sorted { $0.playerID < $1.playerID }
-        return sortedPlayers?.first
     }
     
 }

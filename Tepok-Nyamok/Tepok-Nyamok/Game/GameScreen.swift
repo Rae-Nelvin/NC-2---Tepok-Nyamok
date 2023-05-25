@@ -19,15 +19,16 @@ class GameScreen: UIViewController {
     var cardsLabel: UILabel!
     var cardImage: UIImageView!
     var doubleTap: UITapGestureRecognizer!
-    var player2Rectangle: UIView!
-    var player3Rectangle: UIView!
-    var player4Rectangle: UIView!
-    var player5Rectangle: UIView!
+    var player1Hand: UIView!
+    var player2Hand: UIView!
+    var player3Hand: UIView!
     
     //MARK: BackEnd Components
     var cards: [Card] = cardLists.lists
     var gameKitManager: GameKitManager!
     var revealedCards: [Card] = []
+    var isMatch: Bool = false
+    var hands: [Player] = []
 
     override func viewDidLoad() {
         view.backgroundColor = UIColor(named: "Cream-Yellow")
@@ -38,7 +39,6 @@ class GameScreen: UIViewController {
     }
     
     // MARK: UI Logics
-
     private func setupViews() {
         exitButton = UIButton().generateExitButton()
         view.addSubview(exitButton)
@@ -62,12 +62,6 @@ class GameScreen: UIViewController {
         revealButton.addTarget(self, action: #selector(revealCard), for: .touchUpInside)
         revealButton.isEnabled = true
         view.addSubview(revealButton)
-
-        player2Rectangle = UIView()
-        player2Rectangle.layer.cornerRadius = 10
-        player2Rectangle.backgroundColor = .white
-        player2Rectangle.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(player2Rectangle)
 
         doubleTap = UITapGestureRecognizer(target: self, action: #selector(doubleTapTriggered))
         doubleTap.numberOfTapsRequired = 2
@@ -95,11 +89,6 @@ class GameScreen: UIViewController {
 
             revealButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
             revealButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-
-            player2Rectangle.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 4),
-            player2Rectangle.topAnchor.constraint(equalTo: cardsLeftLabel.topAnchor, constant: -104),
-            player2Rectangle.widthAnchor.constraint(equalToConstant: 64),
-            player2Rectangle.heightAnchor.constraint(equalToConstant: 64)
         ])
     }
 
@@ -160,9 +149,66 @@ class GameScreen: UIViewController {
             }
         }
     }
+    
+    private func player1HandReveal() {
+        player1Hand = UIView()
+        player1Hand.backgroundColor = .red
+        view.addSubview(player1Hand)
+        
+        player1Hand.frame = CGRect(x: view.center.x, y: view.frame.maxY + 64, width: 64, height: 200)
+        
+        UIView.animate(withDuration: 1) { [self] in
+            player1Hand.frame = CGRect(x: 160, y: 406, width: 64, height: 200)
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            UIView.animate(withDuration: 1) { [self] in
+                player1Hand.frame = CGRect(x: view.center.x, y: view.frame.maxY + 64, width: 64, height: 200)
+            }
+        }
+        self.checkLastHand()
+    }
+    
+    private func player2HandReveal() {
+        player2Hand = UIView(frame: CGRect(x: view.frame.maxX, y: view.frame.maxY + 64, width: 64, height: 200))
+        player2Hand.backgroundColor = .red
+        player2Hand.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(player2Hand)
+        
+        UIView.animate(withDuration: 1) { [self] in
+            player2Hand.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 4)
+            player2Hand.frame = CGRect(x: 300, y: 406, width: 64, height: 200)
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            UIView.animate(withDuration: 1) { [self] in
+                player2Hand.frame = CGRect(x: view.frame.maxX, y: view.frame.maxY + 64, width: 64, height: 200)
+            }
+        }
+        self.checkLastHand()
+    }
+    
+    private func player3HandReveal() {
+        player3Hand = UIView(frame: CGRect(x: view.frame.minX, y: view.frame.maxY + 64, width: 64, height: 200))
+        player3Hand.backgroundColor = .red
+        player3Hand.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(player3Hand)
+        
+        UIView.animate(withDuration: 1) { [self] in
+            player3Hand.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 4)
+            player3Hand.frame = CGRect(x: 100, y: 406, width: 64, height: 200)
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            UIView.animate(withDuration: 1) { [self] in
+                player3Hand.frame = CGRect(x: view.frame.minX, y: view.frame.maxY + 64, width: 64, height: 200)
+            }
+        }
+        self.checkLastHand()
+    }
 
     @objc private func revealCard() {
-        if gameKitManager.playingGame {
+        if gameKitManager.playingGame && !isMatch {
             removeCards()
             cardLabel.removeFromSuperview()
             cardLabel = generateColumn(string: self.cards.first?.name ?? "")
@@ -181,7 +227,8 @@ class GameScreen: UIViewController {
             }
             sendRevealedCardData(card!)
 //            checkWin(player: self.gameKitManager.player!)
-        } else {
+            checkDeckCard()
+        } else if !gameKitManager.playingGame {
             showWinScreen()
         }
     }
@@ -191,16 +238,44 @@ class GameScreen: UIViewController {
     }
     
     @objc func doubleTapTriggered() {
-        if self.checkCard(card: (self.gameKitManager.player?.cards.first)!) == true {
-            print("Correct")
-        } else {
-            print("Wrong Tapped")
+        print("Double Tap Triggered")
+        print("Correct")
+        if !hands.contains(gameKitManager.player!) && isMatch {
+            hands.append(gameKitManager.player!)
+            revealPlayerHands(receivedHand: gameKitManager.player!)
+            sendPlayerHandsData(gameKitManager.player!)
+        }
+    }
+    
+    private func revealPlayerHands(receivedHand: Player) {
+        var count = 0
+        for hand in hands {
+            if receivedHand == hand {
+                break
+            }
+            count += 1
+        }
+        revealHand(player: count + 1)
+    }
+    
+    private func revealHand(player: Int) -> Void {
+        switch player {
+        case 1: return self.player1HandReveal()
+        case 2: return self.player2HandReveal()
+        case 3: return self.player3HandReveal()
+        default: return self.player1HandReveal()
         }
     }
     
     // MARK: BackEnd Logics
     private func addRevealedCard(card: Card) {
         revealedCards.append(card)
+    }
+    
+    private func checkDeckCard() {
+        if revealedCards.last?.name == cards.first?.name {
+            isMatch = true
+        }
     }
     
     private func removeCards() {
@@ -211,11 +286,24 @@ class GameScreen: UIViewController {
         }
     }
     
-    private func sendRevealedCardData(_ card: Card) {
-        let cardData = encodeCardData(card)
-        if let cardData = cardData {
-            gameKitManager.sendGameData(cardData)
+    private func checkLastHand() {
+        if gameKitManager.players!.count + 1 == 2 {
+            if gameKitManager.player == hands.last && hands.count == 2 {
+                for card in revealedCards {
+                    gameKitManager.player?.cards.append(card)
+                    revealedCards.remove(at: 0)
+                }
+            }
+        } else if gameKitManager.players!.count + 1 == 3 {
+            if gameKitManager.player == hands.last && hands.count == 3 {
+                for card in revealedCards {
+                    gameKitManager.player?.cards.append(card)
+                    revealedCards.remove(at: 0)
+                }
+            }
         }
+        isMatch = false
+        cardsLabel.text = "\((self.gameKitManager.player?.cards.count)!)"
     }
     
     private func updateOtherPlayersView(with card: Card) {
@@ -234,32 +322,52 @@ class GameScreen: UIViewController {
             UIView.animate(withDuration: 0.5) {
                 self.cardImage.frame = CGRect(x: 130, y: 286, width: 131, height: 174)
             }
+            checkDeckCard()
+        }
+    }
+    
+    private func sendRevealedCardData(_ card: Card) {
+        let cardData = encodeData(card)
+        if let cardData = cardData {
+            gameKitManager.sendGameData(cardData)
+        }
+    }
+    
+    private func sendPlayerHandsData(_ hand: Player) {
+        let handData = encodeData(hand)
+        if let handData = handData {
+            gameKitManager.sendGameData(handData)
         }
     }
 
     private func handleReceivedGameData(_ data: Data, fromPlayer player: GKPlayer) {
-        if let card = decodeCardData(data) {
+        if let card: Card = decodeData(data) {
             updateOtherPlayersView(with: card)
+        } else if let hand: Player = decodeData(data) {
+            if !self.hands.contains(hand) {
+                self.hands.append(hand)
+                self.revealPlayerHands(receivedHand: hand)
+            }
         }
     }
     
     // MARK: Encode and Decode
-    private func encodeCardData(_ card: Card) -> Data? {
+    private func encodeData<T: Codable>(_ object: T) -> Data? {
         do {
             let encoder = JSONEncoder()
-            return try encoder.encode(card)
+            return try encoder.encode(object)
         } catch {
-            print("Failed to encode card data:", error)
+            print("Error encoding data: \(error)")
             return nil
         }
     }
-    
-    private func decodeCardData(_ data: Data) -> Card? {
+
+    private func decodeData<T: Codable>(_ data: Data) -> T? {
         do {
             let decoder = JSONDecoder()
-            return try decoder.decode(Card.self, from: data)
+            return try decoder.decode(T.self, from: data)
         } catch {
-            print("Failed to decode card data:", error)
+            print("Error decoding data: \(error)")
             return nil
         }
     }

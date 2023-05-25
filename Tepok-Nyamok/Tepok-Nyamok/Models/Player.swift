@@ -7,20 +7,20 @@
 
 import Foundation
 
-class Player: Identifiable {
+class Player: Identifiable, Equatable,  Codable {
     var id = UUID()
     let name: String
     var cards: [Card]
-    var isWin: Bool
-    var isTurn: Bool
     
     init(name: String) {
         self.id = UUID()
         self.name = name
         self.cards = []
-        self.isWin = false
-        self.isTurn = false
         assignCards()
+    }
+    
+    static func == (lhs: Player, rhs: Player) -> Bool {
+        return lhs.id == rhs.id
     }
     
     func assignCards() {
