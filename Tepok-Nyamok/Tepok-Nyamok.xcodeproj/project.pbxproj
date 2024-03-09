@@ -19,9 +19,6 @@
 		159FEA8F2A1A5380006C9EE8 /* Tepok_Nyamok.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 159FEA8D2A1A5380006C9EE8 /* Tepok_Nyamok.xcdatamodeld */; };
 		159FEA912A1A5381006C9EE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 159FEA902A1A5381006C9EE8 /* Assets.xcassets */; };
 		159FEA942A1A5381006C9EE8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 159FEA922A1A5381006C9EE8 /* LaunchScreen.storyboard */; };
-		159FEA9F2A1A5382006C9EE8 /* Tepok_NyamokTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159FEA9E2A1A5382006C9EE8 /* Tepok_NyamokTests.swift */; };
-		159FEAA92A1A5382006C9EE8 /* Tepok_NyamokUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159FEAA82A1A5382006C9EE8 /* Tepok_NyamokUITests.swift */; };
-		159FEAAB2A1A5382006C9EE8 /* Tepok_NyamokUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159FEAAA2A1A5382006C9EE8 /* Tepok_NyamokUITestsLaunchTests.swift */; };
 		159FEAB92A1A53AA006C9EE8 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 159FEAB82A1A53AA006C9EE8 /* GameKit.framework */; };
 		159FEABB2A1A53B1006C9EE8 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 159FEABA2A1A53B1006C9EE8 /* SpriteKit.framework */; };
 		159FEAC52A1B59F3006C9EE8 /* ButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159FEAC42A1B59F3006C9EE8 /* ButtonExtension.swift */; };
@@ -65,10 +62,7 @@
 		159FEA932A1A5381006C9EE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		159FEA952A1A5381006C9EE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		159FEA9A2A1A5382006C9EE8 /* Tepok-NyamokTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tepok-NyamokTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		159FEA9E2A1A5382006C9EE8 /* Tepok_NyamokTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tepok_NyamokTests.swift; sourceTree = "<group>"; };
 		159FEAA42A1A5382006C9EE8 /* Tepok-NyamokUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tepok-NyamokUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		159FEAA82A1A5382006C9EE8 /* Tepok_NyamokUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tepok_NyamokUITests.swift; sourceTree = "<group>"; };
-		159FEAAA2A1A5382006C9EE8 /* Tepok_NyamokUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tepok_NyamokUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		159FEAB82A1A53AA006C9EE8 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		159FEABA2A1A53B1006C9EE8 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		159FEAC42A1B59F3006C9EE8 /* ButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExtension.swift; sourceTree = "<group>"; };
@@ -127,8 +121,6 @@
 			isa = PBXGroup;
 			children = (
 				159FEA832A1A5380006C9EE8 /* Tepok-Nyamok */,
-				159FEA9D2A1A5382006C9EE8 /* Tepok-NyamokTests */,
-				159FEAA72A1A5382006C9EE8 /* Tepok-NyamokUITests */,
 				159FEA822A1A5380006C9EE8 /* Products */,
 				159FEAB72A1A53AA006C9EE8 /* Frameworks */,
 			);
@@ -161,23 +153,6 @@
 				159FEA8D2A1A5380006C9EE8 /* Tepok_Nyamok.xcdatamodeld */,
 			);
 			path = "Tepok-Nyamok";
-			sourceTree = "<group>";
-		};
-		159FEA9D2A1A5382006C9EE8 /* Tepok-NyamokTests */ = {
-			isa = PBXGroup;
-			children = (
-				159FEA9E2A1A5382006C9EE8 /* Tepok_NyamokTests.swift */,
-			);
-			path = "Tepok-NyamokTests";
-			sourceTree = "<group>";
-		};
-		159FEAA72A1A5382006C9EE8 /* Tepok-NyamokUITests */ = {
-			isa = PBXGroup;
-			children = (
-				159FEAA82A1A5382006C9EE8 /* Tepok_NyamokUITests.swift */,
-				159FEAAA2A1A5382006C9EE8 /* Tepok_NyamokUITestsLaunchTests.swift */,
-			);
-			path = "Tepok-NyamokUITests";
 			sourceTree = "<group>";
 		};
 		159FEAB72A1A53AA006C9EE8 /* Frameworks */ = {
@@ -362,7 +337,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				159FEA9F2A1A5382006C9EE8 /* Tepok_NyamokTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,8 +344,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				159FEAA92A1A5382006C9EE8 /* Tepok_NyamokUITests.swift in Sources */,
-				159FEAAB2A1A5382006C9EE8 /* Tepok_NyamokUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
