@@ -150,6 +150,37 @@ class GameScreen: UIViewController {
         }
     }
     
+    private func showDrawScreen() {
+        let blackView = UIView()
+        blackView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        blackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(blackView)
+        blackView.widthAnchor.constraint(equalToConstant: view.bounds.width).isActive = true
+        blackView.heightAnchor.constraint(equalToConstant: view.bounds.height).isActive = true
+        blackView.center = view.center
+
+        let label = UILabel()
+        label.text = "You Have to Draw \(self.revealedCards.count) Cards"
+        label.textColor = UIColor.white
+        label.font = .systemFont(ofSize: 26, weight: .bold)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        blackView.addSubview(label)
+        label.centerXAnchor.constraint(equalTo: blackView.centerXAnchor).isActive = true
+        label.centerYAnchor.constraint(equalTo: blackView.centerYAnchor).isActive = true
+
+        UIView.animate(withDuration: 0.5) {
+            blackView.alpha = 1
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+            UIView.animate(withDuration: 0.5) {
+                blackView.alpha = 0
+            } completion: { _ in
+                blackView.removeFromSuperview()
+            }
+        }
+    }
+    
     private func player1HandReveal() {
         player1Hand = UIImageView(image: UIImage(named: "Spongebob"))
         view.addSubview(player1Hand)
@@ -312,6 +343,7 @@ class GameScreen: UIViewController {
     private func checkLastHand() {
         if gameKitManager.players!.count + 1 == 2 && hands.count == 2 {
             if gameKitManager.player == hands.last {
+                self.showDrawScreen()
                 for card in revealedCards {
                     gameKitManager.player?.cards.append(card)
                     revealedCards.remove(at: 0)
@@ -323,6 +355,7 @@ class GameScreen: UIViewController {
             }
         } else if gameKitManager.players!.count + 1 == 3 {
             if gameKitManager.player == hands.last && hands.count == 3 {
+                self.showDrawScreen()
                 for card in revealedCards {
                     gameKitManager.player?.cards.append(card)
                     revealedCards.remove(at: 0)

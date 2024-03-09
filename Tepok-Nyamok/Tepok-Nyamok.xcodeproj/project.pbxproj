@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1508E5702A1D48190019781B /* PlayersScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1508E56F2A1D48190019781B /* PlayersScreen.swift */; };
 		1508E5762A1FBD930019781B /* NameLabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1508E5752A1FBD930019781B /* NameLabelExtension.swift */; };
 		158515CA2A1BB01400889001 /* GameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158515C92A1BB01400889001 /* GameScreen.swift */; };
 		158515CE2A1BB03C00889001 /* GameRulesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158515CD2A1BB03C00889001 /* GameRulesScreen.swift */; };
@@ -50,7 +49,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1508E56F2A1D48190019781B /* PlayersScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayersScreen.swift; path = ../../../../../../.Trash/PlayersScreen.swift; sourceTree = "<group>"; };
 		1508E5752A1FBD930019781B /* NameLabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameLabelExtension.swift; sourceTree = "<group>"; };
 		158515C92A1BB01400889001 /* GameScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreen.swift; sourceTree = "<group>"; };
 		158515CD2A1BB03C00889001 /* GameRulesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRulesScreen.swift; sourceTree = "<group>"; };
@@ -195,7 +193,6 @@
 		159FEABC2A1A64D6006C9EE8 /* Welcome */ = {
 			isa = PBXGroup;
 			children = (
-				1508E56F2A1D48190019781B /* PlayersScreen.swift */,
 				159FEA882A1A5380006C9EE8 /* WelcomeScreen.swift */,
 				158515CD2A1BB03C00889001 /* GameRulesScreen.swift */,
 				158516252A1CC5CB00889001 /* LoadingScreen.swift */,
@@ -357,7 +354,6 @@
 				158516212A1CB32100889001 /* GameKitManager.swift in Sources */,
 				159FEA8F2A1A5380006C9EE8 /* Tepok_Nyamok.xcdatamodeld in Sources */,
 				159FEA872A1A5380006C9EE8 /* SceneDelegate.swift in Sources */,
-				1508E5702A1D48190019781B /* PlayersScreen.swift in Sources */,
 				158516162A1BC8B000889001 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
